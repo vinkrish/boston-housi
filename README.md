@@ -276,7 +276,7 @@ vs.ModelComplexity(X_train, y_train)
 
 ** Hint: ** Look at the graph above Question 5 and see where the validation scores lie for the various depths that have been assigned to the model. Does it get better with increased depth? At what point do we get our best validation score without overcomplicating our model? And remember, Occams Razor states "Among competing hypotheses, the one with the fewest assumptions should be selected."
 
-**Answer:** At maximum depth of 4, model  behaves well to unseen data. Looking at the complexity curves - we notice that training score and validation score is at highest. 
+**Answer:** At maximum depth of 4, model  behaves well to unseen data. Looking at the complexity curves - we notice that training score and validation score is at highest and then diverge beyond this value. 
 
 -----
 
@@ -385,7 +385,7 @@ print("Parameter 'max_depth' is {} for the optimal model.".format(reg.get_params
 
 ** Hint: ** The answer comes from the output of the code snipped above.
 
-**Answer:** Parameter 'max_depth' is 4 for the optimal model.
+**Answer:** Parameter 'max_depth' is 4 for the optimal model, guess we made correlate with the actual result.
 
 ### Question 10 - Predicting Selling Prices
 Imagine that you were a real estate agent in the Boston area looking to use this model to help price homes owned by your clients that they wish to sell. You have collected the following information from three of your clients:
