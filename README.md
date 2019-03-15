@@ -60,19 +60,19 @@ In the code cell below, you will need to implement the following:
 
 ```python
 # TODO: Minimum price of the data
-minimum_price = prices.min()
+minimum_price = np.min(prices)
 
 # TODO: Maximum price of the data
-maximum_price = prices.max()
+maximum_price = np.max(prices)
 
 # TODO: Mean price of the data
-mean_price = prices.mean()
+mean_price = np.mean(prices)
 
 # TODO: Median price of the data
 median_price = np.median(prices)
 
 # TODO: Standard deviation of prices of the data
-std_price = prices.std()
+std_price = np.std(prices)
 
 # Show the calculated statistics
 print("Statistics for Boston housing dataset:\n")
@@ -89,7 +89,7 @@ print("Standard deviation of prices: ${}".format(std_price))
     Maximum price: $1024800.0
     Mean price: $454342.9447852761
     Median price $438900.0
-    Standard deviation of prices: $165340.27765266786
+    Standard deviation of prices: $165171.13154429477
     
 
 ### Question 1 - Feature Observation
