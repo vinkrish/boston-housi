@@ -31,7 +31,7 @@ import visuals as vs
 data = pd.read_csv("census.csv")
 
 # Success - Display the first record
-display(data.head(n=10))
+display(data.head(n=1))
 ```
 
 
@@ -86,159 +86,6 @@ display(data.head(n=10))
       <td>40.0</td>
       <td>United-States</td>
       <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>50</td>
-      <td>Self-emp-not-inc</td>
-      <td>Bachelors</td>
-      <td>13.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>13.0</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>38</td>
-      <td>Private</td>
-      <td>HS-grad</td>
-      <td>9.0</td>
-      <td>Divorced</td>
-      <td>Handlers-cleaners</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>40.0</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>53</td>
-      <td>Private</td>
-      <td>11th</td>
-      <td>7.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Handlers-cleaners</td>
-      <td>Husband</td>
-      <td>Black</td>
-      <td>Male</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>40.0</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>28</td>
-      <td>Private</td>
-      <td>Bachelors</td>
-      <td>13.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Wife</td>
-      <td>Black</td>
-      <td>Female</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>40.0</td>
-      <td>Cuba</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>37</td>
-      <td>Private</td>
-      <td>Masters</td>
-      <td>14.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Wife</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>40.0</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>49</td>
-      <td>Private</td>
-      <td>9th</td>
-      <td>5.0</td>
-      <td>Married-spouse-absent</td>
-      <td>Other-service</td>
-      <td>Not-in-family</td>
-      <td>Black</td>
-      <td>Female</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>16.0</td>
-      <td>Jamaica</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>52</td>
-      <td>Self-emp-not-inc</td>
-      <td>HS-grad</td>
-      <td>9.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>45.0</td>
-      <td>United-States</td>
-      <td>&gt;50K</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>31</td>
-      <td>Private</td>
-      <td>Masters</td>
-      <td>14.0</td>
-      <td>Never-married</td>
-      <td>Prof-specialty</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>14084.0</td>
-      <td>0.0</td>
-      <td>50.0</td>
-      <td>United-States</td>
-      <td>&gt;50K</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>42</td>
-      <td>Private</td>
-      <td>Bachelors</td>
-      <td>13.0</td>
-      <td>Married-civ-spouse</td>
-      <td>Exec-managerial</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>5178.0</td>
-      <td>0.0</td>
-      <td>40.0</td>
-      <td>United-States</td>
-      <td>&gt;50K</td>
     </tr>
   </tbody>
 </table>
@@ -582,7 +429,7 @@ For classification problems that are skewed in their classification distribution
 
 ```python
 
-TP = np.sum(income) # Counting the ones as this is the naive case. Note that 'income' is the 'income_raw' data encoded to numerical values done in the data preprocessing step.
+TP = np.sum(income) # Counting the ones as this is the naive case.
 FP = income.count() - TP # Specific to the naive case
 
 TN = 0 # No predicted negatives in the naive case
