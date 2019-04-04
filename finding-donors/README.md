@@ -254,16 +254,16 @@ A cursory investigation of the dataset will determine how many individuals fit i
 
 
 ```python
-# TODO: Total number of records
+# Total number of records
 n_records = data.shape[0]
 
-# TODO: Number of records where individual's income is more than $50,000
+# Number of records where individual's income is more than $50,000
 n_greater_50k = data[data['income'].str.strip() == '>50K'].shape[0]
 
-# TODO: Number of records where individual's income is at most $50,000
+# Number of records where individual's income is at most $50,000
 n_at_most_50k = data[data['income'].str.strip() == '<=50K'].shape
 
-# TODO: Percentage of individuals whose income is more than $50,000
+# Percentage of individuals whose income is more than $50,000
 greater_percent = (n_greater_50k / n_records) * 100
 
 # Print the results
@@ -495,10 +495,10 @@ Additionally, as with the non-numeric features, we need to convert the non-numer
 
 
 ```python
-# TODO: One-hot encode the 'features_log_minmax_transform' data using pandas.get_dummies()
+# One-hot encode the 'features_log_minmax_transform' data using pandas.get_dummies()
 features_final = pd.get_dummies(features_log_minmax_transform)
 
-# TODO: Encode the 'income_raw' data to numerical values
+# Encode the 'income_raw' data to numerical values
 income_map = {"<=50K" : 0, ">50K" : 1}
 income = income_raw.map(income_map)
 
@@ -731,10 +731,10 @@ def train_predict(learner, sample_size, X_train, y_train, X_test, y_test):
     # Compute accuracy on test set using accuracy_score()
     results['acc_test'] = accuracy_score(y_test, predictions_test)
     
-    # TODO: Compute F-score on the the first 300 training samples using fbeta_score()
+    # Compute F-score on the the first 300 training samples using fbeta_score()
     results['f_train'] = fbeta_score(y_train[:300], predictions_train, beta=0.5)
         
-    # TODO: Compute F-score on the test set which is y_test
+    # Compute F-score on the test set which is y_test
     results['f_test'] = fbeta_score(y_test, predictions_test, beta=0.5)
        
     # Success
@@ -762,12 +762,12 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier
 
-# TODO: Initialize the three models
+# Initialize the three models
 clf_A = GaussianNB()
 clf_B = DecisionTreeClassifier()
 clf_C = AdaBoostClassifier()
 
-# TODO: Calculate the number of samples for 1%, 10%, and 100% of the training data
+# Calculate the number of samples for 1%, 10%, and 100% of the training data
 # HINT: samples_100 is the entire training set i.e. len(y_train)
 # HINT: samples_10 is 10% of samples_100 (ensure to set the count of the values to be `int` and not `float`)
 # HINT: samples_1 is 1% of samples_100 (ensure to set the count of the values to be `int` and not `float`)
@@ -970,7 +970,7 @@ from sklearn.ensemble import AdaBoostClassifier
 # Train the supervised model on the training set using .fit(X_train, y_train)
 model = AdaBoostClassifier().fit(X_train,y_train)
 
-# TODO: Extract the feature importances using .feature_importances_ 
+# Extract the feature importances using .feature_importances_ 
 importances = model.feature_importances_
 
 # Plot
