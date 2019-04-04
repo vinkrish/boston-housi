@@ -3,12 +3,6 @@
 ## Model Evaluation & Validation
 ## Project: Predicting Boston Housing Prices
 
-Welcome to the first project of the Machine Learning Engineer Nanodegree! In this notebook, some template code has already been provided for you, and you will need to implement additional functionality to successfully complete this project. You will not need to modify the included code beyond what is requested. Sections that begin with **'Implementation'** in the header indicate that the following block of code will require additional functionality which you must provide. Instructions will be provided for each section and the specifics of the implementation are marked in the code block with a 'TODO' statement. Please be sure to read the instructions carefully!
-
-In addition to implementing code, there will be questions that you must answer which relate to the project and your implementation. Each section where you will answer a question is preceded by a **'Question X'** header. Carefully read each question and provide thorough answers in the following text boxes that begin with **'Answer:'**. Your project submission will be evaluated based on your answers to each of the questions and the implementation you provide.  
-
->**Note:** Code and Markdown cells can be executed using the **Shift + Enter** keyboard shortcut. In addition, Markdown cells can be edited by typically double-clicking the cell to enter edit mode.
-
 ## Getting Started
 In this project, you will evaluate the performance and predictive power of a model that has been trained and tested on data collected from homes in suburbs of Boston, Massachusetts. A model trained on this data that is seen as a *good fit* could then be used to make certain predictions about a home — in particular, its monetary value. This model would prove to be invaluable for someone like a real estate agent who could make use of such information on a daily basis.
 
@@ -59,19 +53,19 @@ In the code cell below, you will need to implement the following:
 
 
 ```python
-# TODO: Minimum price of the data
+# Minimum price of the data
 minimum_price = np.min(prices)
 
-# TODO: Maximum price of the data
+# Maximum price of the data
 maximum_price = np.max(prices)
 
-# TODO: Mean price of the data
+# Mean price of the data
 mean_price = np.mean(prices)
 
-# TODO: Median price of the data
+# Median price of the data
 median_price = np.median(prices)
 
-# TODO: Standard deviation of prices of the data
+# Standard deviation of prices of the data
 std_price = np.std(prices)
 
 # Show the calculated statistics
@@ -127,14 +121,14 @@ For the `performance_metric` function in the code cell below, you will need to i
 
 
 ```python
-# TODO: Import 'r2_score'
+# Import 'r2_score'
 from sklearn.metrics import r2_score
 
 def performance_metric(y_true, y_predict):
     """ Calculates and returns the performance score between 
         true and predicted values based on the metric chosen. """
     
-    # TODO: Calculate the performance score between 'y_true' and 'y_predict'
+    # Calculate the performance score between 'y_true' and 'y_predict'
     score = r2_score(y_true, y_predict)
     
     # Return the score
@@ -186,10 +180,10 @@ For the code cell below, you will need to implement the following:
 
 
 ```python
-# TODO: Import 'train_test_split'
+# Import 'train_test_split'
 from sklearn.model_selection import train_test_split
 
-# TODO: Shuffle and split the data into training and testing subsets
+# Shuffle and split the data into training and testing subsets
 X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=0.20, random_state=33)
 
 # Success
@@ -341,16 +335,16 @@ def fit_model(X, y):
     # Create cross-validation sets from the training data
     cv_sets = ShuffleSplit(n_splits = 10, test_size = 0.20, random_state = 0)
 
-    # TODO: Create a decision tree regressor object
+    # Create a decision tree regressor object
     regressor = DecisionTreeRegressor()
 
-    # TODO: Create a dictionary for the parameter 'max_depth' with a range from 1 to 10
+    # Create a dictionary for the parameter 'max_depth' with a range from 1 to 10
     params = {'max_depth': range(1,11)}
 
-    # TODO: Transform 'performance_metric' into a scoring function using 'make_scorer' 
+    # Transform 'performance_metric' into a scoring function using 'make_scorer' 
     scoring_fnc = make_scorer(performance_metric)
 
-    # TODO: Create the grid search cv object --> GridSearchCV()
+    # Create the grid search cv object --> GridSearchCV()
     # Make sure to include the right parameters in the object:
     # (estimator, param_grid, scoring, cv) which have values 'regressor', 'params', 'scoring_fnc', and 'cv_sets' respectively.
     grid = GridSearchCV(estimator=regressor, param_grid=params, scoring=scoring_fnc, cv=cv_sets)
