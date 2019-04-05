@@ -108,7 +108,7 @@ n_records = data.shape[0]
 n_greater_50k = data[data['income'].str.strip() == '>50K'].shape[0]
 
 # Number of records where individual's income is at most $50,000
-n_at_most_50k = data[data['income'].str.strip() == '<=50K'].shape
+n_at_most_50k = data[data['income'].str.strip() == '<=50K'].shape[0]
 
 # Percentage of individuals whose income is more than $50,000
 greater_percent = (n_greater_50k / n_records) * 100
@@ -122,7 +122,7 @@ print("Percentage of individuals making more than $50,000: {:.2f}%".format(great
 
     Total number of records: 45222
     Individuals making more than $50,000: 11208
-    Individuals making at most $50,000: (34014, 14)
+    Individuals making at most $50,000: 34014
     Percentage of individuals making more than $50,000: 24.78%
     
 
@@ -141,6 +141,136 @@ print("Percentage of individuals making more than $50,000: {:.2f}%".format(great
 * **capital-loss**: continuous. 
 * **hours-per-week**: continuous. 
 * **native-country**: United-States, Cambodia, England, Puerto-Rico, Canada, Germany, Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran, Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland, France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary, Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador, Trinadad&Tobago, Peru, Hong, Holand-Netherlands.
+
+
+```python
+data.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>45222.000000</td>
+      <td>45222.000000</td>
+      <td>45222.000000</td>
+      <td>45222.000000</td>
+      <td>45222.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>38.547941</td>
+      <td>10.118460</td>
+      <td>1101.430344</td>
+      <td>88.595418</td>
+      <td>40.938017</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>13.217870</td>
+      <td>2.552881</td>
+      <td>7506.430084</td>
+      <td>404.956092</td>
+      <td>12.007508</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>17.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>28.000000</td>
+      <td>9.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>40.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>37.000000</td>
+      <td>10.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>40.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>47.000000</td>
+      <td>13.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>45.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>90.000000</td>
+      <td>16.000000</td>
+      <td>99999.000000</td>
+      <td>4356.000000</td>
+      <td>99.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+data.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 45222 entries, 0 to 45221
+    Data columns (total 14 columns):
+    age                45222 non-null int64
+    workclass          45222 non-null object
+    education_level    45222 non-null object
+    education-num      45222 non-null float64
+    marital-status     45222 non-null object
+    occupation         45222 non-null object
+    relationship       45222 non-null object
+    race               45222 non-null object
+    sex                45222 non-null object
+    capital-gain       45222 non-null float64
+    capital-loss       45222 non-null float64
+    hours-per-week     45222 non-null float64
+    native-country     45222 non-null object
+    income             45222 non-null object
+    dtypes: float64(4), int64(1), object(9)
+    memory usage: 4.8+ MB
+    
 
 ----
 ## Preparing the Data
@@ -162,7 +292,7 @@ vs.distribution(data)
 ```
 
 
-![png](output_9_0.png)
+![png](output_11_0.png)
 
 
 For highly-skewed feature distributions such as `'capital-gain'` and `'capital-loss'`, it is common practice to apply a <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">logarithmic transformation</a> on the data so that the very large and very small values do not negatively affect the performance of a learning algorithm. Using a logarithmic transformation significantly reduces the range of values caused by outliers. Care must be taken when applying this transformation however: The logarithm of `0` is undefined, so we must translate the values by a small amount above `0` to apply the the logarithm successfully.
@@ -181,7 +311,7 @@ vs.distribution(features_log_transformed, transformed = True)
 ```
 
 
-![png](output_11_0.png)
+![png](output_13_0.png)
 
 
 ### Normalizing Numerical Features
@@ -204,6 +334,10 @@ features_log_minmax_transform[numerical] = scaler.fit_transform(features_log_tra
 # Show an example of a record with scaling applied
 display(features_log_minmax_transform.head(n = 5))
 ```
+
+    C:\Users\Vinay\Anaconda3\lib\site-packages\sklearn\preprocessing\data.py:323: DataConversionWarning: Data with input dtype int64, float64 were all converted to float64 by MinMaxScaler.
+      return self.partial_fit(X, y)
+    
 
 
 <div>
@@ -428,7 +562,6 @@ For classification problems that are skewed in their classification distribution
 
 
 ```python
-
 TP = np.sum(income) # Counting the ones as this is the naive case.
 FP = income.count() - TP # Specific to the naive case
 
@@ -556,7 +689,7 @@ def train_predict(learner, sample_size, X_train, y_train, X_test, y_test):
     
     # Fit the learner to the training data using slicing with 'sample_size' using .fit(training_features[:], training_labels[:])
     start = time() # Get start time
-    learner = learner.fit(X_train, y_train)
+    learner = learner.fit(X_train[:sample_size], y_train[:sample_size])
     end = time() # Get end time
     
     # Calculate the training time
@@ -610,9 +743,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostClassifier
 
 # Initialize the three models
-clf_A = GaussianNB()
-clf_B = DecisionTreeClassifier()
-clf_C = AdaBoostClassifier()
+clf_A = GaussianNB() # doesn't allow random_state
+clf_B = DecisionTreeClassifier(random_state=42)
+clf_C = AdaBoostClassifier(random_state=42)
 
 # Calculate the number of samples for 1%, 10%, and 100% of the training data
 # HINT: samples_100 is the entire training set i.e. len(y_train)
@@ -647,7 +780,7 @@ vs.evaluate(results, accuracy, fscore)
     
 
 
-![png](output_28_1.png)
+![png](output_30_1.png)
 
 
 ----
@@ -705,7 +838,7 @@ from sklearn import svm
 from sklearn.model_selection import GridSearchCV
 
 # Initialize the classifier
-clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier())
+clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(random_state=42))
 
 # Create the parameters list you wish to tune, using a dictionary if needed.
 # HINT: parameters = {'parameter_1': [value1, value2], 'parameter_2': [value1, value2]}
@@ -740,8 +873,8 @@ print("Final F-score on the testing data: {:.4f}".format(fbeta_score(y_test, bes
 
     Unoptimized model
     ------
-    Accuracy score on testing data: 0.8343
-    F-score on testing data: 0.6618
+    Accuracy score on testing data: 0.8374
+    F-score on testing data: 0.6695
     
     Optimized Model
     ------
@@ -825,7 +958,7 @@ vs.feature_plot(importances, X_train, y_train)
 ```
 
 
-![png](output_45_0.png)
+![png](output_47_0.png)
 
 
 ### Question 7 - Extracting Feature Importance
